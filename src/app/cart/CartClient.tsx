@@ -1,47 +1,39 @@
-'use client';
-
-import React from 'react';
+'use client'
+import { loadStripe } from "@stripe/stripe-js";
+import React from 'react'; // Removed unnecessary import of useState
 import { useCart } from '@/hooks/UseCart';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { MdArrowBack } from 'react-icons/md';
 import ItemContent from './ItemContent';
-import axios from 'axios';
-import getStripe from '../../lib/get-stripe'; // Adjust the import path according to your project structure
-
 
 const CartClient: React.FC = () => {
-  const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
+  const { cartProducts, handleClearCart, cartTotalAmount } =useCart();
+  
+  const stripePromise = loadStripe(
+    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+  );
   const { data: session } = useSession();
-
   const handleCheckout = async () => {
-    try {
-      const response = await axios.post('/api/checkout_session', {
-        items: cartProducts.map((item) => ({
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: item.name,
-            },
-            unit_amount: item.new_price * 100, // Assuming price is in dollars
-          },
-          quantity: item.quantity,
-        })),
-        success_url: window.location.origin + '/success',
-        cancel_url: window.location.origin + '/cancel',
-      });
+    const stripe = await stripePromise;
+    const response = await fetch("http://localhost:3000/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        items: cartProducts,
+        email: session?.user?.email,
+      }),
+    });
+    const data = await response.json();
 
-      const { id } = response.data;
-      const stripe = await getStripe();
-
-      if (stripe) {
-        await stripe.redirectToCheckout({ sessionId: id });
-      }
-    } catch (error) {
-      console.error('Error creating checkout session:', error);
+    if (response.ok) {
+      stripe?.redirectToCheckout({ sessionId: data.id });
+      handleClearCart(); // Clearing the cart after successful checkout
+    } else {
+      throw new Error("Failed to create Stripe Payment");
     }
   };
-
+      
   if (!cartProducts || cartProducts.length === 0) {
     return (
       <div className="flex flex-col items-center">
@@ -84,7 +76,7 @@ const CartClient: React.FC = () => {
           </div>
           <p className="text-slate-800 text-base mt-2">Taxes and shipping calculated at checkout</p>
           <button
-            onClick={() =>{}}
+            onClick={handleCheckout}
             className="bg-slate-800 w-full py-2 rounded-md text-white text-base font-medium"
           >
             Checkout
