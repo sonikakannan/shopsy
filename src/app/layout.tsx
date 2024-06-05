@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Navbar from "@/components/Navbar";
+import "slick-carousel/slick/slick.css";
+import Layout from "@/components/Layout";
+import CartProvider from "@/provider/CartProvider";
+import { Toaster } from "react-hot-toast";
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -11,12 +14,25 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <Toaster toastOptions={{style:{
+          background:' rgb( 51 65 85)',
+          color: '#fff',
+        }}}/>
+       <CartProvider>
+       <Layout>
+       <Navbar/>
+        {children}
+        <Footer/>
+       </Layout>
+       </CartProvider>
+        </body>
     </html>
   );
 }
