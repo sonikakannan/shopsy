@@ -1,22 +1,22 @@
+import React, { useState } from 'react';
 import Hero from "@/components/Hero";
-import Image from "next/image";
 import NewCollections from "@/components/NewCollections";
 import SalesCard from "@/components/SalesCard";
-import { Children } from "react";
 import TopProducts from "@/components/TopProducts";
 import Reviews from '@/components/Reviews'
-import FacebookMsg from "@/components/FacebookMsg";
-
+import Chatbot from '@/components/ChatBot';
 
 export default function Home() {
+
+  
   return (
     <main>
+      <Chatbot/>
       <Hero/>
       <NewCollections/>
       <TopProducts/>
       <SalesCard/>
       <Reviews/>
-      <FacebookMsg/>
     </main>
   );
 }

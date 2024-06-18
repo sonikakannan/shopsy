@@ -1,5 +1,5 @@
 import React from "react";
-import footerLogo from "@/utils/logo.png";
+import footerLogo from "@/utils/logo_big.png";
 import Banner from "@/utils/cart_icon.png";
 import {
   FaFacebook,
@@ -8,6 +8,7 @@ import {
   FaLocationArrow,
   FaMobileAlt,
 } from "react-icons/fa";
+import Image from "next/image";
 
 const BannerImg = {
   backgroundImage: `url(${Banner})`,
@@ -21,41 +22,40 @@ const BannerImg = {
 const FooterImportantLinks = [
   {
     title: "Home",
-    link: "/#",
+    link: "/",
   },
   {
     title: "Mens",
-    link: "/#about",
+    link: "/mens",
   },
   {
     title: "Womens",
-    link: "/#contact",
+    link: "/womens",
   },
   {
     title: "Kids",
-    link: "/#blog",
+    link: "/kids",
   },
 ];
 
 const FooterLinks = [
-    {
-      title: "Home",
-      link: "/#",
-    },
-    {
-      title: "About",
-      link: "/#about",
-    },
-    {
-      title: "Contact",
-      link: "/#contact",
-    },
-    {
-      title: "Blog",
-      link: "/#blog",
-    },
-  ];
-  
+  {
+    title: "Home",
+    link: "/#",
+  },
+  {
+    title: "About",
+    link: "/#about",
+  },
+  {
+    title: "Contact",
+    link: "/#contact",
+  },
+  {
+    title: "Blog",
+    link: "/#blog",
+  },
+];
 
 const Footer = () => {
   return (
@@ -63,13 +63,13 @@ const Footer = () => {
       <div className="text-blck bg-gray-700 mt-9">
         <div className="container">
           <div data-aos="zoom-in" className="grid md:grid-cols-3 pb-9 pt-5">
-            {/* company details */}
+            {/* Company details */}
             <div className="py-8 px-4">
-              <h1 className="sm:text-3xl text-xl font-bold sm:text-left text-justify mb-3 flex items-center gap-3 text-slate-900">
-                <img src={footerLogo} alt="" className="max-w-[50px]" />
+              <h1 className=" text-xl font-bold sm:text-left text-justify mb-3 flex items-center gap-3 text-slate-900">
+                <Image src={footerLogo} alt="Shopsy Logo" className=" w-6 h-6" />
                 Shopsy
               </h1>
-              <p className=" text-gray-900">
+              <p className="text-gray-900">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum in
                 beatae ea recusandae blanditiis veritatis.
               </p>
@@ -82,13 +82,13 @@ const Footer = () => {
                   <h1 className="sm:text-xl text-xl font-bold sm:text-left text-justify mb-3 text-slate-900">
                     Important Links
                   </h1>
-                  <ul className="flex flex-col gap-3 ">
+                  <ul className="flex flex-col gap-3">
                     {FooterImportantLinks.map((link) => (
                       <li
-                        className="cursor-pointer text-gray-900 hover:text-white hover:translate-x-1 duration-300 "
                         key={link.title}
+                        className="cursor-pointer hover:text-white hover:translate-x-1 duration-300 text-gray-900"
                       >
-                        <span>{link.title}</span>
+                        <a href={link.link}>{link.title}</a>
                       </li>
                     ))}
                   </ul>
@@ -102,18 +102,17 @@ const Footer = () => {
                   <ul className="flex flex-col gap-3">
                     {FooterLinks.map((link) => (
                       <li
-                        className="cursor-pointer hover:text-white hover:translate-x-1 duration-300 text-gray-900"
                         key={link.title}
+                        className="cursor-pointer hover:text-white hover:translate-x-1 duration-300 text-gray-900"
                       >
-                        <span>{link.title}</span>
+                        <a href={link.link}>{link.title}</a>
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
 
-              {/* social links */}
-
+              {/* Social links and contact */}
               <div>
                 <div className="flex items-center gap-3 mt-6">
                   <a href="#">

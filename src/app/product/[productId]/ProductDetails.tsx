@@ -30,7 +30,8 @@ export type CartProductType = {
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ new_products }) => {
     const { cartTotalQty, cartProducts, handleAddProductTocart } = useCart();
-    
+
+
     const [isProductInCart, setIsProductInCart] = useState(false);
 
     const [CartProduct, setCartProduct] = useState<CartProductType>({

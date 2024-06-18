@@ -1,8 +1,8 @@
-'use client'
+"use client";
 import React from "react";
 import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const TestimonialData = [
   {
@@ -32,22 +32,7 @@ const TestimonialData = [
 ];
 
 const Testimonials = () => {
-    // var settings = {
-    //     dots: false,
-    //     infinite: true,
-    //     speed: 800,
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    //     autoplay: true,
-    //     autoplaySpeed: 2000,
-    //     cssEase: "ease-in-out",
-    //     pauseOnHover: false,
-    //     pauseOnFocus: true,
-    //     arrows: false,
-    // };
-
   const settings = {
-    dots: true,
     arrows: false,
     infinite: true,
     speed: 500,
@@ -89,20 +74,20 @@ const Testimonials = () => {
       <div className="container">
         {/* header section */}
         <div className="text-center mb-10 max-w-[600px] mx-auto">
-          <p data-aos="fade-up" className="text-orange-400">
+          <p  className="text-orange-400">
             What our customers are saying
           </p>
-          <h1 data-aos="fade-up" className="text-5xl font-bold">
+          <h1  className="text-5xl font-bold">
             Testimonials
           </h1>
-          <p data-aos="fade-up" className="text-gray-500">
+          <p  className="text-gray-500">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit
             asperiores modi Sit asperiores modi
           </p>
         </div>
 
         {/* Testimonial cards */}
-        <div data-aos="zoom-in">
+        <div >
           <Slider {...settings}>
             {TestimonialData.map((data) => (
               <div key={data.id} className="my-6">
@@ -117,12 +102,15 @@ const Testimonials = () => {
                   <div className="flex flex-col items-center gap-4">
                     <div className="space-y-3">
                       <p className="text-xs text-gray-500">{data.text}</p>
-                      <h1 className="text-xl font-bold text-black/80 dark:text-light">
+                      <h1 className="text-xl font-bold text-black/80 dark:text-white">
                         {data.name}
                       </h1>
                     </div>
                   </div>
-                  <p className="text-black/20 text-9xl font-serif absolute top-0 right-0">
+                  <p
+                    className="text-black/20 text-9xl font-serif absolute top-0 right-0"
+                    aria-hidden="true" // Improved accessibility by hiding decorative text from screen readers
+                  >
                     ,,
                   </p>
                 </div>

@@ -4,7 +4,9 @@ import Slider from "react-slick";
 import { banner_img } from '@/utils/BannerDetails';
 import Image from 'next/image';
 
+
 const Hero = () => {
+    
     var settings = {
         dots: false,
         infinite: true,
@@ -21,9 +23,9 @@ const Hero = () => {
 
     return (
         <section>
-            <div className='relative overflow-hidden min-h-[550px] sm:min-h-[450px] bg-gray-100 flex justify-center items-center dark:bg-gray-950 dark:text-white duration-200'>
+            <div className='relative overflow-hidden min-h-[550px] sm:min-h-[450px] bg-gray-100 flex justify-center items-center dark:bg-slate-900  dark:text-white duration-200'>
                 {/* background pattern */}
-                <div className='h-[500px] w-[500px] bg-orange-300 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z-9'></div>
+                <div className='h-[500px] w-[500px] bg-orange-400 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z-9'></div>
                 {/* hero section */}
                 <div className='container pb-8 sm:pb-0 mx-auto'>
                     <Slider {...settings}>

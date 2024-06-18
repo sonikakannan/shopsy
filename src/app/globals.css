@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html.dark {
+     background-color: rgba(30, 6, 6, 0.026);
+     color: white;
+}
+
+.primary-orange{
+    background-color: #e2891d;
+}

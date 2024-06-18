@@ -8,7 +8,7 @@ interface IPrams {
 
 const Product = ({ params }: { params: IPrams }) => {
     const selectedProduct = new_products.find(p => p.id.toString() === params.productId);
-    
+
     if (!selectedProduct) {
         return <div>Product not found</div>;
     }
